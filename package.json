@@ -2,7 +2,7 @@
   "name": "sls-example",
   "description": "",
   "version": "0.1.0",
-  "dependencies": {
-    "serverless-python-requirements": "^5.1.1"
+  "devDependencies": {
+    "serverless-python-requirements": "^5.1.0"
   }
 }
