@@ -1,6 +1,7 @@
 import boto3
 from datetime import datetime
 import json
+import pytz
 import requests
 
 URL = 'https://www.followmychallenge.com/live/aebr21/api/gbduro/'
@@ -9,7 +10,7 @@ PATH = 'racingCollective/duro/gb/flow.json'
 
 def update_race_flow():
     flow_data = requests.get(URL).json()
-    converted_flow_data = RaceFlowConverter(datetime(2021, 8, 7, 8)).convert_flow_data(flow_data)
+    converted_flow_data = RaceFlowConverter(datetime(2021, 8, 7, 8, tzinfo=pytz.UTC)).convert_flow_data(flow_data)
     to_s3(PATH, converted_flow_data)
 
 
@@ -38,7 +39,7 @@ class RaceFlowConverter(object):
             ts = int(ts)
             d = float(d)
             if (ts - last_ts) >= 300 and 0 < (d - last_d) < 200:
-                elapsed = datetime.fromtimestamp(ts) - self.start_time
+                elapsed = pytz.utc.localize(datetime.fromtimestamp(ts)) - self.start_time
                 elapsed_hours = elapsed.days * 24 + elapsed.seconds / 60 / 60
                 converted_track.append({
                     'x': d,
