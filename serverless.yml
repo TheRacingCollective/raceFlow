@@ -7,6 +7,5 @@ provider:
 functions:
   update:
     handler: raceflow.update_race_flow
-
 plugins:
   - serverless-python-requirements
