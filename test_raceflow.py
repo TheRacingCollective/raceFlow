@@ -7,7 +7,7 @@ from raceflow import RaceFlowConverter
 class Test(TestCase):
 
     def setUp(self) :
-        self.converter = RaceFlowConverter(datetime(2021, 8, 7, 8, tzinfo=pytz.UTC))
+        self.converter = RaceFlowConverter(datetime(2021, 8, 7, 7, tzinfo=pytz.UTC))
 
     def test_update_race_flow_empty(self):
         test_input = {1: {}}

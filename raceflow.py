@@ -39,7 +39,7 @@ class RaceFlowConverter(object):
             ts = int(ts)
             d = float(d)
             if (ts - last_ts) >= 300 and 0 < (d - last_d) < 200:
-                elapsed = pytz.utc.localize(datetime.fromtimestamp(ts)) - self.start_time
+                elapsed = pytz.utc.localize(datetime.utcfromtimestamp(ts)) - self.start_time
                 elapsed_hours = elapsed.days * 24 + elapsed.seconds / 60 / 60
                 converted_track.append({
                     'x': d,
