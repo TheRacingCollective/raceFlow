@@ -8,6 +8,10 @@ URL = 'https://www.followmychallenge.com/live/aebr21/api/gbduro/'
 PATH = 'racingCollective/duro/gb/flow.json'
 
 
+def lamba_wrapper(event, lambda_context):
+    update_race_flow()
+
+
 def update_race_flow():
     flow_data = requests.get(URL).json()
     converted_flow_data = RaceFlowConverter(datetime(2021, 8, 7, 8, tzinfo=pytz.UTC)).convert_flow_data(flow_data)
