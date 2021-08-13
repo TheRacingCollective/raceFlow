@@ -14,9 +14,9 @@ jobs:
      executor: serverless/default
      steps:
        - checkout
-      - run:
-          name: install dependencies
-          command: yarn install
+       - run:
+           name: install dependencies
+           command: yarn install
        - aws-cli/setup
        - serverless/setup
        - run: sls deploy
